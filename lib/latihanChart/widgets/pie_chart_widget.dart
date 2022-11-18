@@ -115,8 +115,8 @@ class _PieChartSimpleState extends State<PieChartSimple> {
     return List.generate(4, (i) {
       final isTouched = i == touchIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
-      final radius = isTouched ? 80.0 : 60.0;
-      final widgetSize = isTouched ? 55.0 : 40.0;
+      final radius = isTouched ? 70.0 : 60.0;
+      final widgetSize = isTouched ? 50.0 : 40.0;
       switch (i) {
         case 0:
           return PieChartSectionData(
@@ -129,6 +129,10 @@ class _PieChartSimpleState extends State<PieChartSimple> {
               fontWeight: FontWeight.bold,
               color: const Color(0xffffffff),
             ),
+            // borderSide: BorderSide(
+            //   color: Colors.white,
+            //   width: 1,
+            // )
             // badgeWidget: Icon(
             //   Icons.food_bank,
             //   color: Colors.red,

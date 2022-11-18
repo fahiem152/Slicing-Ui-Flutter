@@ -305,75 +305,79 @@ class LineChartSample1State extends State<LineChartSample1> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.23,
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          gradient: LinearGradient(
-            colors: [
-              Color(0xff2c274c),
-              Color(0xff46426c),
-            ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          ),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const SizedBox(
-                  height: 37,
-                ),
-                const Text(
-                  'Unfold Shop 2018',
-                  style: TextStyle(
-                    color: Color(0xff827daa),
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                const Text(
-                  'Monthly Sales',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 37,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16, left: 6),
-                    child: _LineChart(isShowingMainData: isShowingMainData),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: AspectRatio(
+        aspectRatio: 1.23,
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(18)),
+            gradient: LinearGradient(
+              colors: [
+                Color(0xff2c274c),
+                Color(0xff46426c),
               ],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
             ),
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+          ),
+          child: Stack(
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 37,
+                  ),
+                  const Text(
+                    'Unfold Shop 2018',
+                    style: TextStyle(
+                      color: Color(0xff827daa),
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  const Text(
+                    'Monthly Sales',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 37,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16, left: 6),
+                      child: _LineChart(isShowingMainData: isShowingMainData),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-              onPressed: () {
-                setState(() {
-                  isShowingMainData = !isShowingMainData;
-                });
-              },
-            )
-          ],
+              IconButton(
+                icon: Icon(
+                  Icons.refresh,
+                  color:
+                      Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+                ),
+                onPressed: () {
+                  setState(() {
+                    isShowingMainData = !isShowingMainData;
+                  });
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

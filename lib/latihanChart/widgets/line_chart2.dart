@@ -9,68 +9,147 @@ class LineChartSimple2 extends StatefulWidget {
 }
 
 class _LineChartSimple2State extends State<LineChartSimple2> {
-  List<FlSpot> spot = [
-    FlSpot(1, 10),
-    FlSpot(2, 20),
-    FlSpot(3, 30),
-    FlSpot(4, 40),
-    FlSpot(5, 50),
-  ];
-  List<BarChartGroupData> barChartGroupData = [
-    BarChartGroupData(x: 1, barRods: [
-      BarChartRodData(toY: 5.5, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 2, barRods: [
-      BarChartRodData(toY: 12, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 3, barRods: [
-      BarChartRodData(toY: 8, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 4, barRods: [
-      BarChartRodData(toY: 11.4, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 5, barRods: [
-      BarChartRodData(toY: 5, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 6, barRods: [
-      BarChartRodData(toY: 14, color: Colors.black),
-    ]),
-    BarChartGroupData(x: 7, barRods: [
-      BarChartRodData(toY: 10.5, color: Colors.black),
-    ]),
+  List<LineChartBarData> lineChartBarData = [
+    LineChartBarData(
+      color: Color.fromARGB(255, 25, 95, 247),
+      isStrokeCapRound: true,
+      // isStrokeJoinRound: true,
+      dotData: FlDotData(show: false),
+      belowBarData: BarAreaData(
+        show: true,
+        color: Color.fromARGB(255, 25, 95, 247).withOpacity(0.5),
+      ),
+      barWidth: 5,
+      isCurved: true,
+      spots: [
+        FlSpot(1, 1),
+        FlSpot(2, 4),
+        FlSpot(3, 8),
+        FlSpot(4, 9),
+        FlSpot(5, 13),
+        FlSpot(6, 14),
+        FlSpot(7, 12),
+        FlSpot(8, 10),
+        FlSpot(9, 15),
+        FlSpot(10, 20),
+        FlSpot(11, 25),
+      ],
+    )
   ];
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.black.withOpacity(0.7),
-      child: AspectRatio(
-        aspectRatio: 1.3,
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Card(
+        // color: Colors.white,
+        color: Color.fromARGB(255, 171, 171, 217),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'BBCA',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'BBCA',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                  ),
                 ),
               ),
             ),
-            LineChart(LineChartData(lineBarsData: [
-              LineChartBarData(
-                spots: spot,
-                isCurved: true,
-                color: const Color(0xff4af699),
-                barWidth: 8,
-                isStrokeCapRound: true,
-                dotData: FlDotData(show: false),
-                belowBarData: BarAreaData(show: false),
-              )
-            ]))
+            AspectRatio(
+              aspectRatio: 1.3,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                child: LineChart(
+                  LineChartData(
+                    backgroundColor: Color.fromARGB(255, 1, 1, 26),
+                    minX: 1,
+                    minY: 0,
+                    maxX: 11,
+                    maxY: 30,
+                    lineBarsData: lineChartBarData,
+                    gridData: FlGridData(
+                      show: true,
+                      horizontalInterval: 5,
+                      verticalInterval: 3,
+                      getDrawingHorizontalLine: ((value) => FlLine(
+                            color: Color.fromARGB(255, 66, 66, 99),
+                            strokeWidth: 3,
+                          )),
+                      getDrawingVerticalLine: ((value) => FlLine(
+                            color: Color.fromARGB(255, 66, 66, 99),
+                          )),
+                    ),
+                    borderData: FlBorderData(
+                        border: Border(
+                      bottom: BorderSide(color: Color(0xff4e4965), width: 4),
+                      left: BorderSide(color: Colors.transparent),
+                      right: BorderSide(color: Color(0xff4e4965), width: 4),
+                      top: BorderSide(color: Colors.transparent),
+                    )),
+                    titlesData: FlTitlesData(
+                      bottomTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          getTitlesWidget: bottomTitleWidgets,
+                        ),
+                      ),
+                      rightTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                        ),
+                      ),
+                      topTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: false,
+                        ),
+                      ),
+                      leftTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: false,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
+}
+
+Widget bottomTitleWidgets(double value, TitleMeta meta) {
+  const style = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+  Widget text;
+  switch (value.toInt()) {
+    case 2:
+      text = const Text('SEPT', style: style);
+      break;
+    case 6:
+      text = const Text('OCT', style: style);
+      break;
+    case 10:
+      text = const Text('DEC', style: style);
+      break;
+    default:
+      text = const Text('');
+      break;
+  }
+
+  return SideTitleWidget(
+    axisSide: meta.axisSide,
+    space: 10,
+    child: text,
+  );
 }

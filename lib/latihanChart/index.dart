@@ -19,14 +19,17 @@ class _LineChartState extends State<LineChart> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Simple Chart Flutter'),
+          title: Text('Simple Charts Flutter'),
         ),
         body: ListView(
           children: [
             BarChartSimple(),
             PieChartSimple(),
             LineChartSample1(),
-            LineChartSimple2()
+            LineChartSimple2(),
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
